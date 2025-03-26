@@ -24,12 +24,18 @@ const Home = () => (
   <h2 className="section-title text-center mb-5">Categories</h2>
   <div className="row justify-content-center gap-4">
     {categoryLinks.map((cat, i) => (
-      <div key={i} className="col-2 col-md-2 text-center">
+      <div key={i} className="col-auto text-center">  {/* เปลี่ยน col-2 เป็น col-auto */}
         <Link to={cat.path} className="text-decoration-none text-dark">
           <img
             src={`images/category-${i + 1}.png`}
-            className="rounded-circle img-fluid shadow-sm category-thumb"  // ใช้ .category-thumb
+            className="img-fluid shadow-sm category-thumb"
             alt={cat.label}
+            style={{ 
+              width: '120px', 
+              height: '120px', 
+              borderRadius: '50%', 
+              objectFit: 'cover' 
+            }}  
           />
           <h4 className="fs-6 mt-3 fw-normal">{cat.label}</h4>
         </Link>
@@ -37,6 +43,7 @@ const Home = () => (
     ))}
   </div>
 </section>
+
 
 
 
