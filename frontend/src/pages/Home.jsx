@@ -28,7 +28,7 @@ const Home = () => (
         <Link to={cat.path} className="text-decoration-none text-dark">
           <img
             src={`images/category-${i + 1}.png`}
-            className="rounded-circle img-fluid shadow-sm category-thumb"  // ยังใช้ .category-thumb
+            className="rounded-circle img-fluid shadow-sm category-thumb"  // ใช้ .category-thumb
             alt={cat.label}
           />
           <h4 className="fs-6 mt-3 fw-normal">{cat.label}</h4>
@@ -37,6 +37,7 @@ const Home = () => (
     ))}
   </div>
 </section>
+
 
 
     <section className="pb-5 container-lg">
