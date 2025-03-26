@@ -11,11 +11,6 @@ const Drinks = () => (
           { img: "images/product-Blue Hawaii.png", title: "บลูฮาวาย", price: "฿45.00" },
           { img: "images/product-Honey Lemon Soda.png", title: "น้ำผึ่งมะนาวโซดา", price: "฿45.00" },
           { img: "images/product-Strawberry Soda.png", title: "สตอเบอร์รี่", price: "฿45.00" },
-          { img: "images/product-Coke.png", title: "โค้ก", price: "฿25.00" },
-          { img: "images/product-Coke.png", title: "โค้ก", price: "฿25.00" },
-          { img: "images/product-Coke.png", title: "โค้ก", price: "฿25.00" },
-          { img: "images/product-Coke.png", title: "โค้ก", price: "฿25.00" },
-          { img: "images/product-Coke.png", title: "โค้ก", price: "฿25.00" },
         ].map((product, i) => (
           <div key={i} className="col-sm-6 col-md-4 col-lg-3 mb-4">
             <div className="card text-center shadow-sm border-0 h-100">
@@ -31,7 +26,7 @@ const Drinks = () => (
                 <div className="d-flex gap-2 justify-content-center mt-auto">
                   <input
                     type="number"
-                    defaultValue={1}
+                    defaultValue={0}
                     className="form-control text-center quantity"
                     style={{ width: '70px' }}
                   />
