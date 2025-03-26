@@ -15,10 +15,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => (
   <Router>
-    <div className="bg-white" style={{ margin: 0, padding: 0, width: '99vw' }}>
+    <div className="d-flex flex-column min-vh-100 bg-white container-fluid px-0">
       <Header />
 
-      <main className="w-100 py-0 px-0" style={{ margin: 0 }}>
+      <main className="flex-fill">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/coffee-and-tea" element={<CoffeeAndTea />} />
