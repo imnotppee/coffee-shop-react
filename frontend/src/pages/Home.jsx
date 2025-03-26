@@ -42,7 +42,7 @@ const Home = () => (
       <h2 className="section-title text-center my-4">Recommended Menu</h2>
       <div className="row">
         {[
-          { img: "images/product-thumb-1.png", title: "Whole Wheat Sandwich Bread", price: "$18.00" },
+          { img: "images/product-Whole Wheat Sandwich Bread.png", title: "ขนมปังโฮลวีทแซนด์วิช", price: "฿45.00" },
           { img: "images/product-thumb-2.png", title: "Croissant", price: "$12.00" },
           { img: "images/product-thumb-3.png", title: "Blueberry Muffin", price: "$8.00" },
           { img: "images/product-thumb-4.png", title: "Chocolate Cake", price: "$20.00" },
