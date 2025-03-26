@@ -21,22 +21,23 @@ const Home = () => (
     </section>
 
     <section className="py-5 px-4">
-      <h2 className="section-title text-center mb-5">Categories</h2>
-      <div className="row justify-content-center gap-4">
-        {categoryLinks.map((cat, i) => (
-          <div key={i} className="col-5 col-md-2 text-center">
-            <Link to={cat.path} className="text-decoration-none text-dark">
-              <img
-                src={`images/category-${i + 1}.png`}
-                className="rounded-circle img-fluid shadow-sm category-thumb"
-                alt={cat.label}
-              />
-              <h4 className="fs-6 mt-3 fw-normal">{cat.label}</h4>
-            </Link>
-          </div>
-        ))}
+  <h2 className="section-title text-center mb-5">Categories</h2>
+  <div className="row justify-content-center gap-4">
+    {categoryLinks.map((cat, i) => (
+      <div key={i} className="col-5 col-md-2 text-center">
+        <Link to={cat.path} className="text-decoration-none text-dark">
+          <img
+            src={`images/category-${i + 1}.png`}
+            className="rounded-circle img-fluid shadow-sm category-thumb"  // ยังใช้ .category-thumb
+            alt={cat.label}
+          />
+          <h4 className="fs-6 mt-3 fw-normal">{cat.label}</h4>
+        </Link>
       </div>
-    </section>
+    ))}
+  </div>
+</section>
+
 
     <section className="pb-5 container-lg">
       <h2 className="section-title text-center my-4">Recommended Menu</h2>
