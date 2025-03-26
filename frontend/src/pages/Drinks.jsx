@@ -8,14 +8,11 @@ const Drinks = () => (
     <section className="pb-5 w-100 px-4">
       <div className="row gx-4">
         {[
-          { img: "images/product-thumb-1.png", title: "Whole Wheat Sandwich Bread", price: "$18.00" },
-          { img: "images/product-thumb-2.png", title: "Croissant", price: "$12.00" },
-          { img: "images/product-thumb-3.png", title: "Blueberry Muffin", price: "$8.00" },
-          { img: "images/product-thumb-4.png", title: "Chocolate Cake", price: "$20.00" },
-          { img: "images/product-thumb-5.png", title: "Cappuccino", price: "$6.50" },
-          { img: "images/product-thumb-6.png", title: "Espresso", price: "$5.00" },
-          { img: "images/product-thumb-7.png", title: "Latte", price: "$7.00" },
-          { img: "images/product-thumb-8.png", title: "Iced Coffee", price: "$7.50" },
+          { img: "images/product-Blue Hawaii.png", title: "บลูฮาวาย", price: "฿45.00" },
+          { img: "images/product-Honey Lemon Soda.png", title: "น้ำผึ่งมะนาวโซดา", price: "฿45.00" },
+          { img: "images/product-Strawberry Soda.png", title: "สตอเบอร์รี่", price: "฿45.00" },
+          { img: "images/product-Coke.png", title: "โค้ก", price: "฿25.00" },
+
         ].map((product, i) => (
           <div key={i} className="col-sm-6 col-md-4 col-lg-3 mb-4">
             <div className="card text-center shadow-sm border-0 h-100">

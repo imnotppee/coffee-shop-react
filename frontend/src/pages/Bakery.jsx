@@ -10,14 +10,14 @@ const Bakery = () => (
     <section className="pb-5 w-100 px-4">
       <div className="row gx-4">
         {[
-          { img: "images/product-thumb-1.png", title: "Whole Wheat Sandwich Bread", price: "$18.00" },
-          { img: "images/product-thumb-2.png", title: "Croissant", price: "$12.00" },
-          { img: "images/product-thumb-3.png", title: "Blueberry Muffin", price: "$8.00" },
-          { img: "images/product-thumb-4.png", title: "Chocolate Cake", price: "$20.00" },
-          { img: "images/product-thumb-5.png", title: "Cappuccino", price: "$6.50" },
-          { img: "images/product-thumb-6.png", title: "Espresso", price: "$5.00" },
-          { img: "images/product-thumb-7.png", title: "Latte", price: "$7.00" },
-          { img: "images/product-thumb-8.png", title: "Iced Coffee", price: "$7.50" },
+          { img: "images/product-Whole Wheat Sandwich Bread.png", title: "ขนมปังโฮลวีทแซนด์วิช", price: "฿45.00" },
+          { img: "images/product-Croissant.png", title: "ครัวซองต์", price: "฿80.00" },
+          { img: "images/product-Blueberry Muffin.png", title: "บลูเบอร์รี่มัฟฟิน", price: "฿35.00" },
+          { img: "images/product-Chocolate Cake.png", title: "เค้กช็อกโกแลต", price: "฿55.00" },
+          { img: "images/product-Pancake.png", title: "แพนเค้ก", price: "฿40.00" },
+          { img: "images/product-Macaron.png", title: "มาการอง", price: "฿50.00" },
+          { img: "images/product-Tart Cherry.png", title: "ทาร์ตเชอรี่", price: "฿60.00" },
+          { img: "images/product-Tart Cheese.png", title: "ชีสทาร์ต", price: "฿65.00" },
         ].map((product, i) => (
           <div key={i} className="col-sm-6 col-md-4 col-lg-3 mb-4">
             <div className="card text-center shadow-sm border-0 h-100">
