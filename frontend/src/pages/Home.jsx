@@ -27,8 +27,8 @@ const Home = () => (
           <div key={i} className="col-5 col-md-2 text-center">
             <Link to={cat.path} className="text-decoration-none text-dark">
               <img
-                src={`images/category-${i + 1}.jpg`}
-                className="category-coffee.png category-berkery.png category-snack.png category-drink.png"
+                src={`images/category-thumb-${i + 1}.jpg`}
+                className="rounded-circle img-fluid shadow-sm category-thumb"
                 alt={cat.label}
               />
               <h4 className="fs-6 mt-3 fw-normal">{cat.label}</h4>
