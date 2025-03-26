@@ -50,6 +50,7 @@ const App = () => (
       </header>
 
       {/* Main Content */}
+      <div className="w-100 py-0 px-0" style={{ margin: 0 }}>
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -59,7 +60,7 @@ const App = () => (
           <Route path="/drinks" element={<Drinks />} />
         </Routes>
       </main>
-
+      </div>
       {/* Footer */}
       <footer className="py-2" style={{ backgroundColor: '#FFE4E1' }}>
         <div className="container-fluid text-center">
