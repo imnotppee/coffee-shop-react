@@ -1,6 +1,10 @@
-body {
+body, html, #root {
   margin: 0;
   padding: 0;
+  width: 100%;
+}
+
+body {
   --heading-font: "Inter", sans-serif;
   --bs-link-color: #333;
   --bs-link-hover-color: #333;
@@ -19,7 +23,6 @@ body {
   --bs-secondary-rgb: 54, 65, 39;
   --bs-danger: #F95F09;
   --bs-danger-rgb: 249, 95, 9;
-  --bs-success: #a3be4c;
   --bs-success-rgb: 163, 190, 76;
   --bs-primary-bg-subtle: #FFF9EB;
   --bs-success-bg-subtle: #eef5e5;

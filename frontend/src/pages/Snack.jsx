@@ -11,7 +11,6 @@ const Snack = () => (
           { img: "images/product-Spring Rolls.png", title: "ปอเปี๊ยะทอด", price: "฿60.00" },
           { img: "images/product-Sandwich.png", title: "แซนด์วิช", price: "฿40.00" },
           { img: "images/product-French Fries.png", title: "เฟรนฟราย", price: "฿50.00" },
-
         ].map((product, i) => (
           <div key={i} className="col-sm-6 col-md-4 col-lg-3 mb-4">
             <div className="card text-center shadow-sm border-0 h-100">
