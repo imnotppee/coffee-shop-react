@@ -14,6 +14,8 @@ import Footer from './components/Footer';
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+
 const AppLayout = () => {
   const location = useLocation();
   const hideLayout = ['/login', '/register', '/forgot-password'].includes(location.pathname);
