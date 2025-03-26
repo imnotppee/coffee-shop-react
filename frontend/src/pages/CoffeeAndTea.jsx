@@ -9,14 +9,14 @@ const CoffeeAndTea = () => (
   <section className="pb-5 w-100 px-4">
     <div className="row gx-4">
       {[
-        { img: "images/product-thumb-1.png", title: "Whole Wheat Sandwich Bread", price: "$18.00" },
-        { img: "images/product-thumb-2.png", title: "Croissant", price: "$12.00" },
-        { img: "images/product-thumb-3.png", title: "Blueberry Muffin", price: "$8.00" },
-        { img: "images/product-thumb-4.png", title: "Chocolate Cake", price: "$20.00" },
-        { img: "images/product-thumb-5.png", title: "Cappuccino", price: "$6.50" },
-        { img: "images/product-thumb-6.png", title: "Espresso", price: "$5.00" },
-        { img: "images/product-thumb-7.png", title: "Latte", price: "$7.00" },
-        { img: "images/product-thumb-8.png", title: "Iced Coffee", price: "$7.50" },
+        { img: "images/1.jpg", title: "โก้โก้", price: "฿40.00" },
+        { img: "images/2.jpg", title: "กาแฟลาเต้", price: "฿40.00" },
+        { img: "images/3.jpg", title: "ชานม", price: "฿40.00" },
+        { img: "images/4.jpg", title: "อเมริกาโน่เย็น", price: "฿50.00" },
+        { img: "images/5.jpg", title: "คาปูชิโน่", price: "฿50.50" },
+        { img: "images/6.jpg", title: "อเมริกาโน่ส้ม", price: "฿60.00" },
+        { img: "images/7.jpg", title: "นมสดบราวชูก้า", price: "฿60.00" },
+        { img: "images/8.jpg", title: "มัทฉะลาเต้", price: "฿60.50" },
       ].map((product, i) => (
         <div key={i} className="col-sm-6 col-md-4 col-lg-3 mb-4">
           <div className="card text-center shadow-sm border-0 h-100">
