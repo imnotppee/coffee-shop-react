@@ -20,7 +20,7 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="py-5 px-4">
+    <section className="py-10 px-20">
   <h2 className="section-title text-center mb-5">Categories</h2>
   <div className="row justify-content-center gap-4">
     {categoryLinks.map((cat, i) => (
