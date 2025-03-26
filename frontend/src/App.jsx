@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import RegisterForm from './pages/RegisterForm';
 
 const App = () => (
   <Router>
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/snack" element={<Snack />} />
           <Route path="/drinks" element={<Drinks />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/registerform" element={<RegisterForm />} />
         </Routes>
       </main>
 

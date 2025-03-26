@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const CoffeeAndTea = () => (
   <div className="w-100 py-5 px-0" style={{ margin: 0 }}>
-  <h2 className="text-center mb-4">Drinks</h2>
+  <h2 className="text-center mb-4">Coffee/Tea</h2>
   <p className="text-center">รายการเครื่องดื่มของเรา</p>
 
   <section className="pb-5 w-100 px-4">
