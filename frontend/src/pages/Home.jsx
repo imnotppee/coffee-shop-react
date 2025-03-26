@@ -20,11 +20,11 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="py-5 px-4">
+    <section className="py-5 px-0 container-fluid">
   <h2 className="section-title text-center mb-5">Categories</h2>
   <div className="row justify-content-center gap-4">
     {categoryLinks.map((cat, i) => (
-      <div key={i} className="col-auto text-center">  {/* เปลี่ยน col-2 เป็น col-auto */}
+      <div key={i} className="col-auto text-center">
         <Link to={cat.path} className="text-decoration-none text-dark">
           <img
             src={`images/category-${i + 1}.png`}
@@ -43,10 +43,6 @@ const Home = () => (
     ))}
   </div>
 </section>
-
-
-
-
     <section className="pb-5 container-lg">
       <h2 className="section-title text-center my-4">Recommended Menu</h2>
       <div className="row">

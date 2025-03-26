@@ -1,6 +1,6 @@
 body {
-  margin: 0;
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
   --heading-font: "Inter", sans-serif;
   --bs-link-color: #333;
   --bs-link-hover-color: #333;
