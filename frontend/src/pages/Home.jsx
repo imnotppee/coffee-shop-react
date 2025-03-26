@@ -53,7 +53,7 @@ const Home = () => (
         {[
           { img: "images/product-Whole Wheat Sandwich Bread.png", title: "ขนมปังโฮลวีทแซนด์วิช", price: "฿45.00" },
           { img: "images/product-Croissant.png", title: "ครัวซองต์", price: "฿80.00" },
-          { img: "images/product-Blueberry Muffin.png", title: "บลูเบอร์รี่มัฟฟิน", price: "฿35.00" },
+          { img: "images/product-Blueberry Muffin.png", title: "บลูเบอร์รี่มัฟฟิน", price: "฿45.00" },
           { img: "images/product-Chocolate Cake.png", title: "เค้กช็อกโกแลต", price: "฿55.00" },
           { img: "images/product-Cappuccino.png", title: "คาปูชิโน", price: "฿45.00" },
           { img: "images/product-Espresso.png", title: "เอสเพรสโซ ", price: "฿45.00" },
