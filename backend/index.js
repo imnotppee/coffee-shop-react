@@ -20,25 +20,25 @@ const pool = new Pool({
   port: 5432,
 });
 
-// ✅ API: /register
-app.post('/register', async (req, res) => {
-  const { email, password } = req.body;
-  console.log('✅ ได้รับข้อมูลจาก frontend:', email, password);
+// ✅ API: /index
+// app.post('/login', async (req, res) => {
+//   const { email, password } = req.body;
+//   console.log('✅ ได้รับข้อมูลจาก frontend:', email, password,name,phone);
 
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
+//   try {
+//     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const result = await pool.query(
-      'INSERT INTO users (email, user_password) VALUES ($1, $2) RETURNING *',
-      [email, hashedPassword]
-    );
+//     const result = await pool.query(
+//       'INSERT INTO users (email, user_password) VALUES ($1, $2) RETURNING *',
+//       [email, hashedPassword]
+//     );
 
-    res.status(201).json({ message: '✅ บันทึกผู้ใช้สำเร็จ', user: result.rows[0] });
-  } catch (err) {
-    console.error('❌ เกิดข้อผิดพลาด:', err);
-    res.status(500).json({ message: 'เกิดข้อผิดพลาดในการบันทึก' });
-  }
-});
+//     res.status(201).json({ message: '✅ บันทึกผู้ใช้สำเร็จ', user: result.rows[0] });
+//   } catch (err) {
+//     console.error('❌ เกิดข้อผิดพลาด:', err);
+//     res.status(500).json({ message: 'เกิดข้อผิดพลาดในการบันทึก' });
+//   }
+// });
 
 // ✅ Start server
 app.listen(port, () => {
