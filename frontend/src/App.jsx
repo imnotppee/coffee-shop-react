@@ -6,7 +6,6 @@ import Bakery from './pages/Bakery';
 import Snack from './pages/Snack';
 import Drinks from './pages/Drinks';
 import './style.css';
-import ProductDetail from './pages/ProductDetail';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BiSearch, BiUser, BiShoppingBag,
@@ -59,7 +58,6 @@ const App = () => (
           <Route path="/bakery" element={<Bakery />} />
           <Route path="/snack" element={<Snack />} />
           <Route path="/drinks" element={<Drinks />} />
-          <Route path="/product/:slug" element={<ProductDetail />} />
         </Routes>
       </main>
       </div>
