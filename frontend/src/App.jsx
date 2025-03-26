@@ -6,6 +6,7 @@ import Bakery from './pages/Bakery';
 import Snack from './pages/Snack';
 import Drinks from './pages/Drinks';
 import './style.css';
+import ProductDetail from './pages/ProductDetail';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BiSearch, BiUser, BiShoppingBag,
@@ -58,11 +59,12 @@ const App = () => (
           <Route path="/bakery" element={<Bakery />} />
           <Route path="/snack" element={<Snack />} />
           <Route path="/drinks" element={<Drinks />} />
+          <Route path="/product/:slug" element={<ProductDetail />} />
         </Routes>
       </main>
       </div>
       {/* Footer */}
-      <footer className="py-2" style={{ backgroundColor: '#FFE4E1' }}>
+      <footer className="py-2" style={{ backgroundColor: '#D4BAB0' }}>
         <div className="container-fluid text-center">
           <Link to="/">
             <img src="images/logo.png" width="150" alt="LEAFF Logo" />
