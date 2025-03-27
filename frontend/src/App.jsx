@@ -14,6 +14,7 @@ import HeaderSecond from './components/HeaderSecond';  // ✅ Import HeaderSecon
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
 import MenuManagement from './pages/MenuManagement';
+import Cart from './pages/Cart';
 
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -50,6 +51,7 @@ const AppLayout = () => {
           <Route path="/dashboardpage" element={<DashboardPage />} />
           <Route path="/menumanagement" element={<MenuManagement />} />
           <Route path="/product-detail" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
 
