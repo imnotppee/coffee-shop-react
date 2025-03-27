@@ -11,13 +11,14 @@ import ForgotPassword from './pages/ForgotPassword';
 import DashboardPage from './pages/DashboardPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import MenuManagement from './pages/MenuManagement';
 
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AppLayout = () => {
   const location = useLocation();
-  const hideLayout = ['/login', '/register', '/forgot-password', '/dashboardpage', ].includes(location.pathname.toLowerCase());
+  const hideLayout = ['/login', '/register', '/forgot-password', '/dashboardpage', '/menumanagement'].includes(location.pathname.toLowerCase());
 
   return (
     <div className="d-flex flex-column min-vh-100 bg-white container-fluid px-0">
@@ -34,6 +35,7 @@ const AppLayout = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/dashboardpage" element={<DashboardPage />} />
+          <Route path="/menumanagement" element={<MenuManagement />} />
         </Routes>
       </main>
 
