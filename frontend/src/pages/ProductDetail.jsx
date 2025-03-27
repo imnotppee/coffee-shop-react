@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { addToCart } = useContext(CartContext);
+
   const [product, setProduct] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [quantity, setQuantity] = useState(1);
@@ -11,9 +15,9 @@ const ProductDetail = () => {
   useEffect(() => {
     const mockData = {
       id: 1,
-      name: "เอสเพรสโว่บราวน์ชูการ์",
+      name: "เอสเพรสโซ่บราวน์ชูการ์",
       description: "กลิ่นกาแฟหอมหวาน ชวนน่ากิน ดื่มอร่อยใจคิดถึงเธอ",
-      image_url: "/images/7.jpg",
+      image_url: "/images/7.png",
       base_price: 60.0,
       options: {
         sweetness: ["หวานน้อย", "หวานปกติ", "หวานมาก"],
@@ -31,6 +35,7 @@ const ProductDetail = () => {
         temperature: ["ร้อน", "เย็น"]
       }
     };
+
     setProduct(mockData);
     const defaultOptions = {};
     Object.keys(mockData.options).forEach(key => {
@@ -44,14 +49,10 @@ const ProductDetail = () => {
   useEffect(() => {
     if (product) {
       let extra = 0;
-      if (product.options.topping) {
-        const topping = product.options.topping.find(t => t.label === selectedOptions.topping);
-        if (topping) extra += topping.extra;
-      }
-      if (product.options.size) {
-        const size = product.options.size.find(s => s.label === selectedOptions.size);
-        if (size) extra += size.extra;
-      }
+      const size = product.options.size.find(s => s.label === selectedOptions.size);
+      const topping = product.options.topping.find(t => t.label === selectedOptions.topping);
+      if (size) extra += size.extra;
+      if (topping) extra += topping.extra;
       setTotal((product.base_price + extra) * quantity);
     }
   }, [selectedOptions, quantity, product]);
@@ -65,13 +66,24 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = () => {
-    const payload = {
-      productId: product.id,
+    const cartItem = {
+      id: product.id,
+      name: product.name,
+      image: product.image_url,
       options: selectedOptions,
-      quantity,
-      total
+      price: total / quantity,
+      quantity: quantity,
+      total: total,
     };
-    console.log('Add to cart:', payload);
+
+    addToCart(cartItem);
+
+    navigate('/', {
+      state: {
+        message: ` เพิ่ม ${product.name} ลงในตะกร้าแล้ว`,
+        item: cartItem,
+      }
+    });
   };
 
   if (!product) return <div>Loading...</div>;
@@ -106,73 +118,35 @@ const ProductDetail = () => {
           {Object.entries(product.options).map(([type, values]) => (
             <div key={type} className="mb-4">
               <strong style={{ fontSize: '1.2rem', textTransform: 'capitalize' }}>{type}:</strong><br />
-              {values.map((v, index) => (
-                <div className="form-check form-check-inline mt-2" key={index}>
-                  <input
-                    className="form-check-input custom-radio"
-                    type="radio"
-                    name={type}
-                    id={`${type}-${index}`}
-                    value={typeof v === 'string' ? v : v.label}
-                    checked={selectedOptions[type] === (typeof v === 'string' ? v : v.label)}
-                    onChange={() => handleOptionChange(type, typeof v === 'string' ? v : v.label)}
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor={`${type}-${index}`}
-                    style={{ fontSize: '1rem', marginLeft: '6px' }}
-                  >
-                    {typeof v === 'string' ? v : `${v.label} ${v.extra > 0 ? `(+${v.extra}฿)` : ''}`}
-                  </label>
-                </div>
-              ))}
+              {values.map((v, index) => {
+                const label = typeof v === 'string' ? v : v.label;
+                const extra = typeof v === 'string' ? 0 : v.extra;
+                return (
+                  <div className="form-check form-check-inline mt-2" key={index}>
+                    <input
+                      className="form-check-input custom-radio"
+                      type="radio"
+                      name={type}
+                      id={`${type}-${index}`}
+                      value={label}
+                      checked={selectedOptions[type] === label}
+                      onChange={() => handleOptionChange(type, label)}
+                    />
+                    <label className="form-check-label" htmlFor={`${type}-${index}`}>
+                      {label}{extra > 0 ? ` (+${extra}฿)` : ''}
+                    </label>
+                  </div>
+                );
+              })}
             </div>
           ))}
 
           <div className="mb-4">
             <strong style={{ fontSize: '1.2rem' }}>จำนวน:</strong>
             <div className="d-flex align-items-center gap-3 mt-2">
-              <button
-                className="btn"
-                style={{
-                  borderRadius: '50%',
-                  width: '40px',
-                  height: '40px',
-                  fontWeight: 'bold',
-                  fontSize: '1.3rem',
-                  backgroundColor: '#efebe9',
-                  border: '1px solid #a1887f',
-                  color: '#5d4037'
-                }}
-                onClick={() => handleQuantityChange(-1)}
-              >
-                -
-              </button>
-              <span style={{
-                fontSize: '1.6rem',
-                fontWeight: 'bold',
-                minWidth: '60px',
-                textAlign: 'center',
-                color: '#3e2723'
-              }}>
-                {quantity}
-              </span>
-              <button
-                className="btn"
-                style={{
-                  borderRadius: '50%',
-                  width: '40px',
-                  height: '40px',
-                  fontWeight: 'bold',
-                  fontSize: '1.3rem',
-                  backgroundColor: '#efebe9',
-                  border: '1px solid #a1887f',
-                  color: '#5d4037'
-                }}
-                onClick={() => handleQuantityChange(1)}
-              >
-                +
-              </button>
+              <button className="btn" style={btnStyle} onClick={() => handleQuantityChange(-1)}>-</button>
+              <span style={qtyText}>{quantity}</span>
+              <button className="btn" style={btnStyle} onClick={() => handleQuantityChange(1)}>+</button>
             </div>
           </div>
 
@@ -183,25 +157,42 @@ const ProductDetail = () => {
             </span>
           </div>
 
-          <button
-            className="btn"
-            style={{
-              backgroundColor: '#A99481',
-              color: 'white',
-              fontSize: '1.3rem',
-              padding: '12px 30px',
-              borderRadius: '8px',
-              fontWeight: 'bold',
-              border: 'none'
-            }}
-            onClick={handleAddToCart}
-          >
+          <button className="btn" style={addToCartBtn} onClick={handleAddToCart}>
             เพิ่มลงตะกร้า
           </button>
         </div>
       </div>
     </div>
   );
+};
+
+const btnStyle = {
+  borderRadius: '50%',
+  width: '40px',
+  height: '40px',
+  fontWeight: 'bold',
+  fontSize: '1.3rem',
+  backgroundColor: '#efebe9',
+  border: '1px solid #a1887f',
+  color: '#5d4037'
+};
+
+const qtyText = {
+  fontSize: '1.6rem',
+  fontWeight: 'bold',
+  minWidth: '60px',
+  textAlign: 'center',
+  color: '#3e2723'
+};
+
+const addToCartBtn = {
+  backgroundColor: '#A99481',
+  color: 'white',
+  fontSize: '1.3rem',
+  padding: '12px 30px',
+  borderRadius: '8px',
+  fontWeight: 'bold',
+  border: 'none'
 };
 
 export default ProductDetail;

@@ -156,7 +156,7 @@ input[type="radio"].form-check-input:hover {
 }
 
 .custom-brown-btn {
-  background-color: #8a7663 !important;
+  background-color: #a78768 !important;
   color: white !important;
   font-weight: bold;
   border: none;
@@ -166,7 +166,7 @@ input[type="radio"].form-check-input:hover {
 }
 
 .custom-brown-btn:hover {
-  background-color: #6e574e !important;
+  background-color: #785e53 !important;
   color: white !important;
 }
 
@@ -184,3 +184,49 @@ input[type="radio"].form-check-input:hover {
   background-color: #8D6E63; /* สีตอน hover */
 }
 
+.border-brown {
+  border: 1px solid #d0b5a6 !important;
+  border-radius: 4px;
+}
+
+.btn-brown {
+  background-color: #e4dad0 !important;
+  color: white !important;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-brown {
+  background-color: #a99481;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-outline-brown {
+  border: 1px solid #a99481;
+  color: #a99481;
+  font-weight: bold;
+  background-color: transparent;
+}
+.btn-outline-brown:hover {
+  background-color: #a99481;
+  color: white;
+}
+
+.custom-brown-btn {
+  background-color: #A99481;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  text-decoration: none; /* ✅ ลบขีดใต้ข้อความ */
+  display: inline-block;
+}
+
+.custom-brown-btn:hover {
+  background-color: #8B7360;
+  color: white;
+  text-decoration: none; /* ✅ ป้องกันไม่ให้ขีดใต้กลับมาตอน hover */
+}
