@@ -20,7 +20,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const AppLayout = () => {
   const location = useLocation();
   const hideLayout = ['/login', '/register', '/forgot-password', '/dashboardpage', '/menumanagement'].includes(location.pathname.toLowerCase());
-
+  
   return (
     <div className="d-flex flex-column min-vh-100 bg-white container-fluid px-0">
       {!hideLayout && <Header />}
