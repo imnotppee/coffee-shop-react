@@ -78,7 +78,7 @@ const Home = () => {
 
                       {product.type === 'detail' ? (
                         <Link
-                          to="/productdetail"
+                          to="/product-detail"
                           state={product}
                           className="custom-brown-btn"
 
