@@ -82,6 +82,6 @@ const CoffeeAndTea = () => {
     </div>
   </section>
 </div>
-);
-
+ );
+};
 export default CoffeeAndTea;
