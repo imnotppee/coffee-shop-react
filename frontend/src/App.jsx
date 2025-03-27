@@ -13,6 +13,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
 import MenuManagement from './pages/MenuManagement';
+import Cart from './pages/Cart';
 
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,7 +21,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const AppLayout = () => {
   const location = useLocation();
   const hideLayout = ['/login', '/register', '/forgot-password', '/dashboardpage', '/menumanagement'].includes(location.pathname.toLowerCase());
-  
+
   return (
     <div className="d-flex flex-column min-vh-100 bg-white container-fluid px-0">
       {!hideLayout && <Header />}
@@ -38,6 +39,7 @@ const AppLayout = () => {
           <Route path="/dashboardpage" element={<DashboardPage />} />
           <Route path="/menumanagement" element={<MenuManagement />} />
           <Route path="/productdetail" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
 
