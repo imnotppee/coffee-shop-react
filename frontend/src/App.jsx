@@ -11,6 +11,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import DashboardPage from './pages/DashboardPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ProductDetail from './pages/ProductDetail';
 import MenuManagement from './pages/MenuManagement';
 
 import './style.css';
@@ -36,6 +37,7 @@ const AppLayout = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/dashboardpage" element={<DashboardPage />} />
           <Route path="/menumanagement" element={<MenuManagement />} />
+          <Route path="/productdetail" element={<ProductDetail />} />
         </Routes>
       </main>
 
