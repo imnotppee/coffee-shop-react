@@ -16,7 +16,7 @@ const Footer = () => (
           <img src="/images/logo.png" width="150" alt="LEAFF Logo" className="img-fluid" />
         </Link>
 
-        <p className="fst-italic mb-3">“กาแฟแก้วนี้...คือเน็นของฉัน”</p>
+        <p className="fst-italic mb-3">“สัมผัสรสชาติของเมล็ดกาแฟคุณภาพที่เราคัดสรรเพื่อคุณ”</p>
 
         <div className="d-flex justify-content-center gap-4 mb-3 flex-wrap">
           <BiLogoFacebook size={24} />

@@ -8,6 +8,7 @@ import Drinks from './pages/Drinks';
 import Login from './pages/Login';
 import Register from './pages/RegisterForm';
 import ForgotPassword from './pages/ForgotPassword';
+import DashboardPage from './pages/DashboardPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -16,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AppLayout = () => {
   const location = useLocation();
-  const hideLayout = ['/login', '/register', '/forgot-password'].includes(location.pathname);
+  const hideLayout = ['/login', '/register', '/forgot-password', '/dashboardpage', ].includes(location.pathname.toLowerCase());
 
   return (
     <div className="d-flex flex-column min-vh-100 bg-white container-fluid px-0">
@@ -32,6 +33,7 @@ const AppLayout = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/dashboardpage" element={<DashboardPage />} />
         </Routes>
       </main>
 

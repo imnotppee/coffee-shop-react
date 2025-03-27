@@ -10,7 +10,7 @@ const Drinks = () => (
         {[
           { img: "images/product-Blue Hawaii.png", title: "บลูฮาวาย", price: "฿45.00" },
           { img: "images/product-Honey Lemon Soda.png", title: "น้ำผึ่งมะนาวโซดา", price: "฿45.00" },
-          { img: "images/product-Strawberry Soda.png", title: "สตอเบอร์รี่", price: "฿45.00" },
+          { img: "images/product-Strawberry Soda.png", title: "สตอเบอร์รี่โซดา", price: "฿45.00" },
         ].map((product, i) => (
           <div key={i} className="col-sm-6 col-md-4 col-lg-3 mb-4">
             <div className="card text-center shadow-sm border-0 h-100">
