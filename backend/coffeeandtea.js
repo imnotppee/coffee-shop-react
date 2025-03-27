@@ -1,5 +1,3 @@
-// 📦 Backend: Node.js (Express) เชื่อม PostgreSQL และบันทึกลงตาราง Basket
-
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
@@ -10,7 +8,6 @@ const port = 4000;
 app.use(cors());
 app.use(express.json());
 
-// 🔌 เชื่อมต่อ PostgreSQL (pgAdmin)
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
@@ -19,21 +16,33 @@ const pool = new Pool({
   port: 5432
 });
 
-// ✅ POST: เพิ่มสินค้าเข้า Basket
-app.post('/add-to-cart', async (req, res) => {
-  const { ba_name, ba_price, ba_total } = req.body; // รับข้อมูลจาก frontend
-
+app.post('/add-menu', async (req, res) => {
+  const { menu_name, menu_price, menu_image } = req.body;
   try {
     const result = await pool.query(
-      'INSERT INTO "Basket" (ba_name, ba_price, ba_total) VALUES ($1, $2, $3) RETURNING *',
-      [ba_name, ba_price, ba_total]
+      'INSERT INTO menu (menu_name, menu_price, menu_image) VALUES ($1, $2, $3) RETURNING *',
+      [menu_name, menu_price, menu_image]
     );
-    res.status(201).json({ message: '✅ เพิ่มสินค้าลงตะกร้าสำเร็จ', item: result.rows[0] });
+    res.status(201).json({ message: '✅ เพิ่มเมนูสำเร็จ', item: result.rows[0] });
   } catch (error) {
-    console.error('❌ เกิดข้อผิดพลาดในการเพิ่มสินค้า:', error);
-    res.status(500).json({ message: 'เกิดข้อผิดพลาดในการเพิ่มสินค้า' });
+    console.error('❌ เกิดข้อผิดพลาดในการเพิ่มเมนู:', error);
+    res.status(500).json({ message: 'เกิดข้อผิดพลาดในการเพิ่มเมนู' });
   }
 });
+app.post('/add-menu', async (req, res) => {
+    const { menu_name, menu_price, menu_image, user_id } = req.body;
+    try {
+      const result = await pool.query(
+        'INSERT INTO menu (menu_name, menu_price, menu_image, user_id) VALUES ($1, $2, $3, $4) RETURNING *',
+        [menu_name, menu_price, menu_image, user_id]
+      );
+      res.status(201).json({ message: '✅ เพิ่มเมนูสำเร็จ', item: result.rows[0] });
+    } catch (error) {
+      console.error('❌ เพิ่มเมนูผิดพลาด:', error);
+      res.status(500).json({ message: 'เกิดข้อผิดพลาดในการเพิ่มเมนู' });
+    }
+  });
+  
 
 app.listen(port, () => {
   console.log(`🚀 Server is running at http://localhost:${port}`);

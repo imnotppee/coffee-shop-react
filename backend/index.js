@@ -1,4 +1,3 @@
-// backend/index.js
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
@@ -7,11 +6,9 @@ const bcrypt = require('bcrypt');
 const app = express();
 const port = 4000;
 
-// ✅ Middleware ต้องมาก่อน routes
 app.use(cors());
 app.use(express.json());
 
-// ✅ เชื่อมต่อ PostgreSQL
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
@@ -20,25 +17,69 @@ const pool = new Pool({
   port: 5432,
 });
 
-// ✅ API: /index
-// app.post('/login', async (req, res) => {
-//   const { email, password } = req.body;
-//   console.log('✅ ได้รับข้อมูลจาก frontend:', email, password,name,phone);
 
-//   try {
-//     const hashedPassword = await bcrypt.hash(password, 10);
+// ✅ LOGIN
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  console.log('✅ [Login] ได้รับ:', email);
 
-//     const result = await pool.query(
-//       'INSERT INTO users (email, user_password) VALUES ($1, $2) RETURNING *',
-//       [email, hashedPassword]
-//     );
+  try {
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
 
-//     res.status(201).json({ message: '✅ บันทึกผู้ใช้สำเร็จ', user: result.rows[0] });
-//   } catch (err) {
-//     console.error('❌ เกิดข้อผิดพลาด:', err);
-//     res.status(500).json({ message: 'เกิดข้อผิดพลาดในการบันทึก' });
-//   }
-// });
+    if (result.rows.length === 0) {
+      return res.status(401).json({ message: 'ไม่พบบัญชีผู้ใช้นี้' });
+    }
+
+    const user = result.rows[0];
+    const match = await bcrypt.compare(password, user.user_password);
+
+    if (match) {
+      res.json({ message: 'เข้าสู่ระบบสำเร็จ', userId: user.user_id });
+    } else {
+      res.status(401).json({ message: 'รหัสผ่านไม่ถูกต้อง' });
+    }
+  } catch (err) {
+    console.error('❌ [Login] error:', err);
+    res.status(500).json({ message: 'เกิดข้อผิดพลาดในเซิร์ฟเวอร์' });
+  }
+});
+app.post('/add-menu', async (req, res) => {
+  const { menu_name, menu_price, menu_image, user_id } = req.body;
+
+  console.log('🛒 [Add Menu] ได้รับ:', menu_name, user_id); // ✅ Debug
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO menu (menu_name, menu_price, menu_image, user_id) VALUES ($1, $2, $3, $4) RETURNING *',
+      [menu_name, menu_price, menu_image, user_id]
+    );
+
+    res.status(201).json({ message: '✅ เพิ่มเมนูสำเร็จ', item: result.rows[0] });
+  } catch (error) {
+    console.error('❌ เพิ่มเมนูล้มเหลว:', error);
+    res.status(500).json({ message: 'เกิดข้อผิดพลาดในการเพิ่มเมนู' });
+  }
+});
+
+// ✅ REGISTER
+app.post('/register', async (req, res) => {
+  const { name, email, password, phone } = req.body;
+  console.log('✅ [Register] ได้รับข้อมูล:', { name, email, password, phone });
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const result = await pool.query(
+      'INSERT INTO users (user_name, email, user_password, user_phone) VALUES ($1, $2, $3, $4) RETURNING *',
+      [name, email, hashedPassword, phone]
+    );
+
+    res.status(201).json({ message: '✅ สมัครสมาชิกสำเร็จ', user: result.rows[0] });
+  } catch (err) {
+    console.error('❌ [Register] error:', err);
+    res.status(500).json({ message: 'สมัครไม่สำเร็จ' });
+  }
+});
 
 // ✅ Start server
 app.listen(port, () => {
