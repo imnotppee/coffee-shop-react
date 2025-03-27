@@ -10,21 +10,30 @@ import Register from './pages/RegisterForm';
 import ForgotPassword from './pages/ForgotPassword';
 import DashboardPage from './pages/DashboardPage';
 import Header from './components/Header';
+import HeaderSecond from './components/HeaderSecond';  // ✅ Import HeaderSecond
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
 import MenuManagement from './pages/MenuManagement';
-import Cart from './pages/Cart';
 
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const AppLayout = () => {
   const location = useLocation();
-  const hideLayout = ['/login', '/register', '/forgot-password', '/dashboardpage', '/menumanagement'].includes(location.pathname.toLowerCase());
+
+  // ✅ กำหนดหน้าที่จะซ่อน Header & Footer
+  const hideLayoutPages = [
+    "/login", "/register", "/forgot-password", 
+    "/dashboardpage", "/menumanagement", "/stock", 
+    "/customer", "/ordermanagement"
+  ];
   
+  // ✅ ตรวจสอบ path `/productdetail` (ให้ตรงกับ Route)
+  const isProductDetailPage = location.pathname.toLowerCase() === "/productdetail";
+
   return (
     <div className="d-flex flex-column min-vh-100 bg-white container-fluid px-0">
-      {/* ✅ ใช้ HeaderSecond เฉพาะหน้า /product-detail */}
+      {/* ✅ ใช้ HeaderSecond เฉพาะหน้า /productdetail */}
       {!hideLayoutPages.includes(location.pathname.toLowerCase()) &&
         (isProductDetailPage ? <HeaderSecond /> : <Header />)}
 
@@ -32,20 +41,19 @@ const AppLayout = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/coffee-and-tea" element={<CoffeeAndTea />} />
-          <Route path="/product-detail" element={<ProductDetail />} /> {/* ✅ ใช้ ProductDetail */}
+          <Route path="/bakery" element={<Bakery />} />
+          <Route path="/snack" element={<Snack />} />
+          <Route path="/drinks" element={<Drinks />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/dashboardpage" element={<DashboardPage />} />
           <Route path="/menumanagement" element={<MenuManagement />} />
-          <Route path="/productdetail" element={<ProductDetail />} />
-          <Route path="/Bakery" element={<Bakery />} />
-          <Route path="/Snack" element={<Snack />} />
-          <Route path="/Drinks" element={<Drinks />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/product-detail" element={<ProductDetail />} />
         </Routes>
       </main>
 
+      {/* ✅ Footer จะแสดงทุกหน้าที่ยกเว้น hideLayoutPages และ /productdetail */}
       {!hideLayoutPages.includes(location.pathname.toLowerCase()) && !isProductDetailPage && <Footer />}
     </div>
   );
