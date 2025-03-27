@@ -109,6 +109,43 @@ app.post('/order', async (req, res) => {
 
 
 
+const adminEmail = 'admin@example.com';
+const adminPassword = 'admin123';
+
+// Middleware สำหรับตรวจสอบสิทธิ์แอดมิน
+const isAdmin = (req, res, next) => {
+  const { email, password } = req.body; // รับข้อมูลอีเมลและรหัสผ่านจากคำขอ
+
+  // ตรวจสอบว่าอีเมลและรหัสผ่านตรงกับข้อมูลแอดมินหรือไม่
+  if (email === adminEmail && password === adminPassword) {
+    next(); // ถ้าผู้ใช้เป็นแอดมิน ให้ไปยังขั้นตอนถัดไป
+  } else {
+    res.status(403).json({ message: 'Access denied: Not an admin' }); // ถ้าไม่ใช่แอดมิน
+  }
+};
+
+// เส้นทางสำหรับแอดมิน (สามารถเข้าถึงได้เฉพาะแอดมิน)
+app.post('/admin-action', isAdmin, (req, res) => {
+  res.json({ message: 'Admin action performed successfully' });
+});
+
+app.post('/add-menu', async (req, res) => {
+  const { menu_name, menu_price, menu_image, user_id } = req.body;
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO menu (menu_name, menu_price, menu_image, user_id) VALUES ($1, $2, $3, $4) RETURNING *',
+      [menu_name, menu_price, menu_image, user_id]
+    );
+
+    res.status(201).json({ message: '✅ เพิ่มเมนูสำเร็จ', item: result.rows[0] });
+  } catch (error) {
+    console.error('❌ เพิ่มเมนูล้มเหลว:', error);
+    res.status(500).json({ message: 'เกิดข้อผิดพลาดในการเพิ่มเมนู' });
+  }
+});
+
+
 // ✅ Start server
 app.listen(port, () => {
   console.log(`🚀 Backend รันอยู่ที่ http://localhost:${port}`);
