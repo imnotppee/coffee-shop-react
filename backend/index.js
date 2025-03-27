@@ -80,6 +80,27 @@ app.post('/register', async (req, res) => {
     res.status(500).json({ message: 'สมัครไม่สำเร็จ' });
   }
 });
+app.post('/order', async (req, res) => {
+  const { menu_name, quantity, unit_price, subtotal, user_id, order_status, order_name, sweetness, milk, size, topping, temperature } = req.body;
+
+  try {
+    const order_date = new Date(); // วันที่ปัจจุบัน
+
+    // 📌 เพิ่มข้อมูลลงตาราง Orders
+    const result = await pool.query(
+      `INSERT INTO orders (order_date, order_status, quantity, unit_price, subtotal, user_id, order_name, sweetness, milk, size, topping, temperature)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`,
+      [order_date, order_status, quantity, unit_price, subtotal, user_id, order_name, sweetness, milk, size, topping, temperature]
+    );
+
+    res.status(201).json({ message: '📦 สั่งซื้อสำเร็จ', order: result.rows[0] });
+  } catch (err) {
+    console.error('❌ ERROR บันทึกออเดอร์:', err);
+    res.status(500).json({ message: 'เกิดข้อผิดพลาดในการสั่งซื้อ' });
+  }
+});
+
+
 
 // ✅ Start server
 app.listen(port, () => {
