@@ -8,17 +8,35 @@ import OrderTable from '../components/Dashboard/OrderTable';
 
 const DashboardPage = () => {
   return (
-    <div className="flex">
+    <div className="d-flex">
       <Sidebar />
-      <main className="flex-1 bg-gray-50 p-4">
-        <div className="grid grid-cols-3 gap-4 mb-4">
-          <SalesOverview />
-          <YearlyBreakup />
-          <MonthlyEarnings />
+      <main className="flex-grow-1 bg-light p-4" style={{ marginLeft: '80px' }}>
+        {/* Top bar with icons */}
+        <div className="d-flex justify-content-between align-items-center bg-white rounded p-3 mb-4 shadow-sm">
+          <div className="d-flex align-items-center">
+            <i className="bi bi-bell me-2"></i>
+            <span className="fw-bold">+ 45฿</span>
+          </div>
+          <i className="bi bi-person-circle fs-4"></i>
         </div>
-        <div className="grid grid-cols-2 gap-4">
-          <OrderSummary />
-          <OrderTable />
+
+        <div className="row mb-4">
+          <div className="col-md-8 mb-4 mb-md-0">
+            <SalesOverview />
+          </div>
+          <div className="col-md-4 d-flex flex-column gap-3">
+            <YearlyBreakup />
+            <MonthlyEarnings />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-md-4 mb-4">
+            <OrderSummary />
+          </div>
+          <div className="col-md-8">
+            <OrderTable />
+          </div>
         </div>
       </main>
     </div>

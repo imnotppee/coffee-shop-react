@@ -1,32 +1,42 @@
-import { FaTachometerAlt, FaCoffee, FaBoxOpen, FaClipboardList, FaUsers } from 'react-icons/fa';
-import logo from '../../assets/logo.png';
 import React from 'react';
+import { FaTachometerAlt, FaCoffee, FaClipboardList, FaBoxOpen, FaUsers } from 'react-icons/fa';
+import logo from '../../assets/logo.png'; // เปลี่ยน path ตามที่คุณเก็บไฟล์
 
 const Sidebar = () => {
   return (
-    <div className="w-64 bg-white shadow h-screen flex flex-col">
-      <div className="p-4 flex items-center">
-        <img src={logo} alt="Logo" className="h-10 mr-2" />
-        <h1 className="text-xl font-bold">LEAFF</h1>
+    <div
+      className="bg-white border-end d-flex flex-column align-items-center py-3"
+      style={{
+        width: '80px',
+        height: '100vh',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: 1040,
+      }}
+    >
+      {/* โลโก้เล็ก */}
+      <div className="mb-4">
+        <img src={logo} alt="Logo" style={{ width: '40px', height: 'auto' }} />
       </div>
-      <nav className="mt-4 flex-1">
-        <ul>
-          <li className="p-3 flex items-center bg-beige-200 rounded">
-            <FaTachometerAlt className="mr-2" /> Dashboard
-          </li>
-          <li className="p-3 flex items-center">
-            <FaCoffee className="mr-2" /> Menu Management
-          </li>
-          <li className="p-3 flex items-center">
-            <FaClipboardList className="mr-2" /> Order Management
-          </li>
-          <li className="p-3 flex items-center">
-            <FaBoxOpen className="mr-2" /> Stock
-          </li>
-          <li className="p-3 flex items-center">
-            <FaUsers className="mr-2" /> Customer
-          </li>
-        </ul>
+
+      {/* เมนูไอคอนแนวตั้ง */}
+      <nav className="nav flex-column text-center w-100">
+        <a className="nav-link py-3 px-0 text-dark" href="#" title="Dashboard">
+          <FaTachometerAlt size={20} />
+        </a>
+        <a className="nav-link py-3 px-0 text-dark" href="#" title="Menu Management">
+          <FaCoffee size={20} />
+        </a>
+        <a className="nav-link py-3 px-0 text-dark" href="#" title="Order Management">
+          <FaClipboardList size={20} />
+        </a>
+        <a className="nav-link py-3 px-0 text-dark" href="#" title="Stock">
+          <FaBoxOpen size={20} />
+        </a>
+        <a className="nav-link py-3 px-0 text-dark" href="#" title="Customer">
+          <FaUsers size={20} />
+        </a>
       </nav>
     </div>
   );
