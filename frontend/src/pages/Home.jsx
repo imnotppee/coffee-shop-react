@@ -122,23 +122,20 @@ const Home = () => {
             <p className="lead">Grown with Care, Harvested with Heart, Brewed for You" means carefully grown, <br />lovingly harvested, and expertly brewed just for you.</p>
           </div>
         </section>
-
-        <section style={{ backgroundImage: "url('images/ni.png')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '10vh' }} className="d-flex align-items-center text-white">
-          <div className="px-4">
-            <h2 className="display-1 fw-bold" style={{ color: '#FFFFFF', fontSize: '3rem' }}>Savor the Flavor, Experience the Excellence,<br /> Crafted for Every Sip</h2>
-            <p className="lead">Our commitment to quality ensures every cup is crafted with passion and precision, <br /> bringing you the finest coffee experience.</p>
-          </div>
-        </section>
-
-        <section style={{ backgroundImage: "url('images/cof1.png')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '60vh' }} className="d-flex align-items-center text-white">
-          <div className="px-4">
-            <h2 className="display-1 fw-bold" style={{ color: '#FFFFFF', fontSize: '3rem' }}>Savor the Flavor, Experience the Excellence,<br /> Crafted for Every Sip</h2>
-            <p className="lead">Our commitment to quality ensures every cup is crafted with passion and precision, <br /> bringing you the finest coffee experience.</p>
-          </div>
-        </section>
-      </div>
-    </>
-  );
-};
+      <section style={{ backgroundImage: "url('images/ni.png')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '10vh', margin: 0, padding: 0 }} className="d-flex align-items-center text-white">
+  <div className="px-4">
+    <h2 className="display-1 fw-bold" style={{ color: '#FFFFFF', fontSize: '3rem' }}>Savor the Flavor, Experience the Excellence,<br></br> Crafted for Every Sip</h2>
+    <p className="lead">Our commitment to quality ensures every cup is crafted with passion and precision, <br></br> bringing you the finest coffee experience.</p>
+  </div>
+      </section>
+      <section style={{ backgroundImage: "url('images/cof1.png')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '60vh', margin: 0, padding: 0 }} className="d-flex align-items-center text-white">
+  <div className="px-4">
+    <h2 className="display-1 fw-bold" style={{ color: '#FFFFFF', fontSize: '3rem' }}>Savor the Flavor, Experience the Excellence,<br></br> Crafted for Every Sip</h2>
+    <p className="lead">Our commitment to quality ensures every cup is crafted with passion and precision, <br></br> bringing you the finest coffee experience.</p>
+  </div>
+  </section>
+    </div>
+  </>
+);
 
 export default Home;
