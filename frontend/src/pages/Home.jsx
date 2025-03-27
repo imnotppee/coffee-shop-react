@@ -35,7 +35,7 @@ const Home = () => (
               height: '120px', 
               borderRadius: '50%', 
               objectFit: 'cover' 
-            }}  
+            }}   
           />
           <h4 className="fs-6 mt-3 fw-normal">{cat.label}</h4>
         </Link>
@@ -72,6 +72,24 @@ const Home = () => (
         ))}
       </div>
     </section>
+    <section style={{ backgroundImage: "url('images/cof.png')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '60vh', margin: 0, padding: 0 }} className="d-flex align-items-center text-white">
+        <div className="px-4">
+          <h2 className="display-1 fw-bold" style={{ color: '#FFFFFF', fontSize: '3rem' }}>Grown with Care, Harvested with Heart,<br></br> Brewed for You</h2>
+          <p className="lead">Grown with Care, Harvested with Heart, Brewed for You" means carefully grown, <br></br>lovingly harvested, and expertly brewed just for you.</p>
+        </div>
+        </section>
+      <section style={{ backgroundImage: "url('images/ni.png')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '10vh', margin: 0, padding: 0 }} className="d-flex align-items-center text-white">
+  <div className="px-4">
+    <h2 className="display-1 fw-bold" style={{ color: '#FFFFFF', fontSize: '3rem' }}>Savor the Flavor, Experience the Excellence,<br></br> Crafted for Every Sip</h2>
+    <p className="lead">Our commitment to quality ensures every cup is crafted with passion and precision, <br></br> bringing you the finest coffee experience.</p>
+  </div>
+      </section>
+      <section style={{ backgroundImage: "url('images/cof1.png')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '60vh', margin: 0, padding: 0 }} className="d-flex align-items-center text-white">
+  <div className="px-4">
+    <h2 className="display-1 fw-bold" style={{ color: '#FFFFFF', fontSize: '3rem' }}>Savor the Flavor, Experience the Excellence,<br></br> Crafted for Every Sip</h2>
+    <p className="lead">Our commitment to quality ensures every cup is crafted with passion and precision, <br></br> bringing you the finest coffee experience.</p>
+  </div>
+  </section>
     </div>
   </>
 );

@@ -11,7 +11,7 @@ const CoffeeAndTea = () => {
     { img: "images/5.jpg", title: "คาปูชิโน่", price: 50.00 },
     { img: "images/6.jpg", title: "อเมริกาโน่ส้ม", price: 60.00 },
     { img: "images/7.jpg", title: "นมสดบราวชูก้า", price: 60.00 },
-    { img: "images/8.jpg", title: "มัทฉะลาเต้", price: 60.00 },
+    { img: "images/88.jpg", title: "มัทฉะลาเต้", price: 60.00 },
   ];
 
   const handleAddMenu = async (product) => {
