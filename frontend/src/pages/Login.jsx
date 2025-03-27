@@ -3,11 +3,10 @@ import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const navigate = useNavigate(); // ✅ สำหรับ redirect
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const navigate = useNavigate(); // << เพิ่มตรงนี้
 
   const handleLogin = async (e) => {
     e.preventDefault();
