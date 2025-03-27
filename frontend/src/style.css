@@ -155,3 +155,32 @@ input[type="radio"].form-check-input:hover {
   cursor: pointer;
 }
 
+.custom-brown-btn {
+  background-color: #8a7663 !important;
+  color: white !important;
+  font-weight: bold;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-brown-btn:hover {
+  background-color: #6e574e !important;
+  color: white !important;
+}
+
+.custom-brown-btn {
+  background-color: #A99481; /* สีปุ่ม */
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-brown-btn:hover {
+  background-color: #8D6E63; /* สีตอน hover */
+}
+

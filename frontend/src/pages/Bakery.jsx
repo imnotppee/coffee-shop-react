@@ -67,12 +67,12 @@ const Bakery = () => {
                   <h5 className="card-title fs-6">{product.title}</h5>
                   <p className="text-dark fw-semibold">฿{product.price.toFixed(2)}</p>
                   <div className="d-flex gap-2 justify-content-center mt-auto">
-                    <button
-                      className="btn btn-success"
-                      onClick={() => handleAddMenu(product)}
-                    >
-                      ใส่ตะกร้า
-                    </button>
+                  <button
+  className="btn custom-brown-btn"
+  onClick={() => handleAddMenu(product)}
+>
+  ใส่ตะกร้า
+</button>
                   </div>
                 </div>
               </div>

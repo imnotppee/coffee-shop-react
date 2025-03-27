@@ -74,25 +74,27 @@ const Home = () => {
                     <h5 className="card-title fs-6">{product.title}</h5>
                     <p className="text-dark fw-semibold">{product.price}</p>
                     <div className="d-flex gap-2 justify-content-center mt-auto">
-                      <input type="number" defaultValue={1} className="form-control text-center quantity" style={{ width: '70px' }} />
+                     
 
                       {product.type === 'detail' ? (
                         <Link
                           to="/productdetail"
                           state={product}
-                          className="btn btn-primary"
+                          className="custom-brown-btn"
+
                         >
-                          Add to Cart
+                          ใส่ตะกร้า
                         </Link>
                       ) : (
                         <button
-                          className="btn btn-primary"
+                        className="custom-brown-btn"
+
                           onClick={() => {
                             console.log("Added to cart:", product);
                             navigate('/cart');
                           }}
                         >
-                          Add to Cart
+                          ใส่ตะกร้า
                         </button>
                       )}
                     </div>
