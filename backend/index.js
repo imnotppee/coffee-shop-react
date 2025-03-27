@@ -81,6 +81,34 @@ app.post('/register', async (req, res) => {
   }
 });
 
+// Endpoint สำหรับดึงข้อมูลเมนู
+app.get('/menu', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT menu_name, menu_price, menu_image FROM menu');
+    res.json(result.rows); // ส่งข้อมูลเมนูกลับไปที่ frontend
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+app.post('/order', async (req, res) => {
+  const { menu_name, quantity, unit_price, subtotal, user_id, order_status, sweetness, milk, size, topping, temperature } = req.body;
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO orders(menu_name, quantity, unit_price, subtotal, user_id, order_status, order_name, sweetness, milk, size, topping, temperature) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
+      [menu_name, quantity, unit_price, subtotal, user_id, order_status, menu_name, sweetness, milk, size, topping, temperature]
+    );
+    res.json({ message: 'Order placed successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error placing order' });
+  }
+});
+
+
+
+
 // ✅ Start server
 app.listen(port, () => {
   console.log(`🚀 Backend รันอยู่ที่ http://localhost:${port}`);
