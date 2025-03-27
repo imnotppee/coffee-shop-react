@@ -10,20 +10,32 @@ import Register from './pages/RegisterForm';
 import ForgotPassword from './pages/ForgotPassword';
 import DashboardPage from './pages/DashboardPage';
 import Header from './components/Header';
+import HeaderSecond from './components/HeaderSecond';  // ✅ Import HeaderSecond
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
 import MenuManagement from './pages/MenuManagement';
+import Cart from './pages/Cart';
 
-import './style.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "./style.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const AppLayout = () => {
   const location = useLocation();
-  const hideLayout = ['/login', '/register', '/forgot-password', '/dashboardpage', '/menumanagement'].includes(location.pathname.toLowerCase());
+
+  // ✅ กำหนดหน้าที่จะซ่อน Header & Footer
+  const hideLayoutPages = [
+    "/login", "/register", "/forgot-password", 
+    "/dashboardpage", "/menumanagement", "/stock", 
+    "/customer", "/ordermanagement"
+  ];
   
+  const isProductDetailPage = ["/productdetail", "/cart"].includes(location.pathname.toLowerCase());
+
   return (
     <div className="d-flex flex-column min-vh-100 bg-white container-fluid px-0">
-      {!hideLayout && <Header />}
+      {/* ✅ ใช้ HeaderSecond เฉพาะหน้า /productdetail */}
+      {!hideLayoutPages.includes(location.pathname.toLowerCase()) &&
+        (isProductDetailPage ? <HeaderSecond /> : <Header />)}
 
       <main className="flex-fill">
         <Routes>
@@ -37,11 +49,13 @@ const AppLayout = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/dashboardpage" element={<DashboardPage />} />
           <Route path="/menumanagement" element={<MenuManagement />} />
-          <Route path="/productdetail" element={<ProductDetail />} />
+          <Route path="/product-detail" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
 
-      {!hideLayout && <Footer />}
+      {/* ✅ Footer จะแสดงทุกหน้าที่ยกเว้น hideLayoutPages และ /productdetail */}
+      {!hideLayoutPages.includes(location.pathname.toLowerCase()) && !isProductDetailPage && <Footer />}
     </div>
   );
 };
