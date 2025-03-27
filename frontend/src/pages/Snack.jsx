@@ -71,11 +71,11 @@ const Snack = () => {
                       style={{ width: '70px' }}
                     />
                     <button
-                      className="btn btn-primary"
-                      onClick={() => handleAddMenu(product)}
-                    >
-                      ใส่ตะกร้า
-                    </button>
+  className="btn custom-brown-btn"
+  onClick={() => handleAddMenu(product)}
+>
+  ใส่ตะกร้า
+</button>
                   </div>
                 </div>
               </div>
