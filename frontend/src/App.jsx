@@ -13,37 +13,35 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
 import MenuManagement from './pages/MenuManagement';
-import Cart from './pages/Cart';
 
-import './style.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "./style.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const AppLayout = () => {
   const location = useLocation();
   const hideLayout = ['/login', '/register', '/forgot-password', '/dashboardpage', '/menumanagement'].includes(location.pathname.toLowerCase());
-
+  
   return (
     <div className="d-flex flex-column min-vh-100 bg-white container-fluid px-0">
-      {!hideLayout && <Header />}
+      {/* ✅ ใช้ HeaderSecond เฉพาะหน้า /product-detail */}
+      {!hideLayoutPages.includes(location.pathname.toLowerCase()) &&
+        (isProductDetailPage ? <HeaderSecond /> : <Header />)}
 
       <main className="flex-fill">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/coffee-and-tea" element={<CoffeeAndTea />} />
-          <Route path="/bakery" element={<Bakery />} />
-          <Route path="/snack" element={<Snack />} />
-          <Route path="/drinks" element={<Drinks />} />
+          <Route path="/product-detail" element={<ProductDetail />} /> {/* ✅ ใช้ ProductDetail */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/dashboardpage" element={<DashboardPage />} />
           <Route path="/menumanagement" element={<MenuManagement />} />
           <Route path="/productdetail" element={<ProductDetail />} />
-          <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
 
-      {!hideLayout && <Footer />}
+      {!hideLayoutPages.includes(location.pathname.toLowerCase()) && !isProductDetailPage && <Footer />}
     </div>
   );
 };
