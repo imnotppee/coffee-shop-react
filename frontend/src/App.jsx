@@ -29,8 +29,7 @@ const AppLayout = () => {
     "/customer", "/ordermanagement"
   ];
   
-  // ✅ ตรวจสอบ path `/productdetail` (ให้ตรงกับ Route)
-  const isProductDetailPage = location.pathname.toLowerCase() === "/productdetail";
+  const isProductDetailPage = ["/productdetail", "/cart"].includes(location.pathname.toLowerCase());
 
   return (
     <div className="d-flex flex-column min-vh-100 bg-white container-fluid px-0">
