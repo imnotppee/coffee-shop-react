@@ -11,7 +11,7 @@ const DashboardPage = () => {
     <div className="d-flex">
       <Sidebar />
       <main className="flex-grow-1 bg-light p-4" style={{ marginLeft: '80px' }}>
-        {/* Top bar with icons */}
+        {/* Top Bar */}
         <div className="d-flex justify-content-between align-items-center bg-white rounded p-3 mb-4 shadow-sm">
           <div className="d-flex align-items-center">
             <i className="bi bi-bell me-2"></i>
@@ -20,21 +20,32 @@ const DashboardPage = () => {
           <i className="bi bi-person-circle fs-4"></i>
         </div>
 
+        {/* Main Chart + Right Column */}
         <div className="row mb-4">
-          <div className="col-md-8 mb-4 mb-md-0">
-            <SalesOverview />
+          {/* Left: Chart */}
+          <div className="col-md-8">
+            <div className="h-100">
+              <SalesOverview />
+            </div>
           </div>
-          <div className="col-md-4 d-flex flex-column gap-3">
-            <YearlyBreakup />
-            <MonthlyEarnings />
+
+          {/* Right: 3 stacked cards */}
+          <div className="col-md-4 d-flex flex-column justify-content-between" style={{ height: '100%' }}>
+            <div className="mb-3">
+              <YearlyBreakup />
+            </div>
+            <div className="mb-3">
+              <MonthlyEarnings />
+            </div>
+            <div>
+              <OrderSummary />
+            </div>
           </div>
         </div>
 
+        {/* Bottom table */}
         <div className="row">
-          <div className="col-md-4 mb-4">
-            <OrderSummary />
-          </div>
-          <div className="col-md-8">
+          <div className="col-md-12">
             <OrderTable />
           </div>
         </div>

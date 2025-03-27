@@ -17,7 +17,7 @@ const Sidebar = () => {
     >
       {/* โลโก้เล็ก */}
       <div className="mb-4">
-        <img src={logo} alt="Logo" style={{ width: '40px', height: 'auto' }} />
+        <img src={logo} alt="Logo" style={{ width: '70px', height: 'auto' }} />
       </div>
 
       {/* เมนูไอคอนแนวตั้ง */}
