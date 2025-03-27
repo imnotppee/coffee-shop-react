@@ -10,13 +10,13 @@ const CoffeeAndTea = () => (
     <div className="row gx-4">
       {[
         { img: "images/1.jpg", title: "โก้โก้", price: "฿40.00" },
-        { img: "images/2.jpg", title: "กาแฟลาเต้", price: "฿40.00" },
+        { img: "images/2.jpg", title: "ลาเต้เย็น", price: "฿40.00" },
         { img: "images/3.jpg", title: "ชานม", price: "฿40.00" },
         { img: "images/4.jpg", title: "อเมริกาโน่เย็น", price: "฿50.00" },
-        { img: "images/5.jpg", title: "คาปูชิโน่", price: "฿50.00" },
+        { img: "images/5.jpg", title: "คาปูชิโน่เย็น", price: "฿50.00" },
         { img: "images/6.jpg", title: "อเมริกาโน่ส้ม", price: "฿60.00" },
-        { img: "images/7.jpg", title: "นมสดบราวชูก้า", price: "฿60.00" },
-        { img: "images/8.jpg", title: "มัทฉะลาเต้", price: "฿60.00" },
+        { img: "images/7.jpg", title: "เอสเพรสโซ่บราวน์ชูการ์", price: "฿60.00" },
+        { img: "images/8.png", title: "มัทฉะลาเต้", price: "฿60.00" },
       ].map((product, i) => (
         <div key={i} className="col-sm-6 col-md-4 col-lg-3 mb-4">
           <div className="card text-center shadow-sm border-0 h-100">

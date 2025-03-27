@@ -47,14 +47,14 @@ const Home = () => (
       <h2 className="section-title text-center my-4">Recommended Menu</h2>
       <div className="row">
         {[
-          { img: "images/product-Whole Wheat Sandwich Bread.png", title: "ขนมปังโฮลวีทแซนด์วิช", price: "฿45.00" },
-          { img: "images/product-Croissant.png", title: "ครัวซองต์", price: "฿80.00" },
-          { img: "images/product-Blueberry Muffin.png", title: "บลูเบอร์รี่มัฟฟิน", price: "฿45.00" },
-          { img: "images/product-Chocolate Cake.png", title: "เค้กช็อกโกแลต", price: "฿55.00" },
-          { img: "images/product-Cappuccino.png", title: "คาปูชิโน", price: "฿45.00" },
-          { img: "images/product-Espresso.png", title: "เอสเพรสโซ ", price: "฿45.00" },
-          { img: "images/product-Latte.png", title: "ลาเต้", price: "฿45.00" },
-          { img: "images/product-Iced Coffee.png", title: "ไอซ์คอฟฟี่", price: "฿45.00" },
+          { img: "images/7.jpg", title: "เอสเพรสโซ่บราวน์ชูการ์", price: "฿60.00" },
+          { img: "images/9.png", title: "ลาเต้ร้อน", price: "฿60.00" },
+          { img: "images/product-Cappuccino.png", title: "คาปูชิโน", price: "฿60.00" },
+          { img: "images/8.png", title: "มัทฉะลาเต้", price: "฿60.00" },
+          { img: "images/product-Tart Cherry.png", title: "ทาร์ตเชอรี่", price: "฿60.00" },
+          { img: "images/product-Tart Cheese.png", title: "ชีสทาร์ต", price: "฿65.00" },
+          { img: "images/product-Honey Lemon Soda.png", title: "น้ำผึ่งมะนาวโซดา", price: "฿45.00" },
+          { img: "images/product-Strawberry Soda.png", title: "สตอเบอร์รี่โซดา", price: "฿45.00" },
         ].map((product, i) => (
           <div key={i} className="col-sm-6 col-md-4 col-lg-3 mb-4">
             <div className="card text-center shadow-sm border-0 h-100">
