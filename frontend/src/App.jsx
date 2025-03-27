@@ -13,6 +13,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
 import MenuManagement from './pages/MenuManagement';
+import Cart from './pages/Cart';
 
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -38,6 +39,10 @@ const AppLayout = () => {
           <Route path="/dashboardpage" element={<DashboardPage />} />
           <Route path="/menumanagement" element={<MenuManagement />} />
           <Route path="/productdetail" element={<ProductDetail />} />
+          <Route path="/Bakery" element={<Bakery />} />
+          <Route path="/Snack" element={<Snack />} />
+          <Route path="/Drinks" element={<Drinks />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
 
