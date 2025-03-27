@@ -97,3 +97,61 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 20px;
   }
 }
+
+/* ✅ ซ่อน radio เดิม */
+.custom-radio-hidden {
+  display: none;
+}
+
+/* ✅ กรอบรวม radio แบบ inline */
+.custom-radio-wrapper {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 16px 12px 0;
+  cursor: pointer;
+  gap: 8px;
+}
+
+/* ✅ ปุ่มวงกลม */
+.custom-radio-visual {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #a1887f;     /* ขอบน้ำตาลอ่อน */
+  border-radius: 50%;
+  background-color: #fff;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+/* ✅ จุดวงกลมตอนถูกเลือก */
+.custom-radio-wrapper.active .custom-radio-visual::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 8px;
+  height: 8px;
+  background-color: #5d4037;     /* น้ำตาลเข้ม */
+  border-radius: 50%;
+}
+
+/* ✅ ตัวอักษรข้างปุ่ม */
+.custom-radio-label {
+  font-weight: 500;
+  color: #3e2723;
+  font-size: 1rem;
+}
+
+/* ✅ เปลี่ยนสีปุ่ม radio ตอนเลือกให้เป็นน้ำตาล */
+input[type="radio"].form-check-input:checked {
+  background-color: #5d4037 !important;
+  border-color: #5d4037 !important;
+  box-shadow: 0 0 0 4px rgba(93, 64, 55, 0.2);
+}
+
+/* ✅ เพิ่มความชัดเจนตอน hover */
+input[type="radio"].form-check-input:hover {
+  border-color: #a1887f;
+  cursor: pointer;
+}
+
