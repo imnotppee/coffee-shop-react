@@ -15,6 +15,7 @@ const ProductDetail = () => {
   const [total, setTotal] = useState(0);
   const [message, setMessage] = useState('');
 
+  // ราคาสำหรับขนาดและท็อปปิ้ง
   const sizePrice = { S: 0, M: 10, L: 15 };
   const toppingPrice = { none: 0, pearl: 5, cream: 5 };
 
@@ -23,13 +24,13 @@ const ProductDetail = () => {
     if (!product) return 0; // ป้องกันไม่ให้เกิดข้อผิดพลาดเมื่อ product ยังไม่โหลด
 
     const sizeExtra = sizePrice[selectedOptions.size] || 0;
-    const toppingExtra = toppingPrice[selectedOptions.topping] || 0;
+    const toppingExtra = toppingPrice[selectedOptions.topping] || 0; // คำนวณราคาท็อปปิ้ง
     const basePrice = product.base_price || 0;
 
     // คำนวณราคาทั้งหมด
     return (basePrice + sizeExtra + toppingExtra) * quantity;
   };
-
+  
   // ดึงข้อมูลสินค้าเมื่อโหลดหน้า
   useEffect(() => {
     const mockData = {
@@ -75,16 +76,16 @@ const ProductDetail = () => {
 
   // ฟังก์ชันสำหรับการเพิ่มสินค้าในตะกร้า
   const handleOrder = async () => {
-    const user_id = localStorage.getItem('user_id') || 1;
+    const unitPrice = total / quantity; // คำนวณราคาเป็นต่อหน่วย
+    const userId = localStorage.getItem('user_id') || 1; // ดึง user_id จาก localStorage หรือใช้ 1 เป็นค่า default
 
     const order = {
-      menu_name: product.name,
+      menu_name: product.name,  // ใช้ product.name แทน selectedMenu.name
       quantity: quantity,
-      unit_price: total / quantity,
+      unit_price: unitPrice,
       subtotal: total,
-      user_id: parseInt(user_id),
+      user_id: userId,  // ดึงจาก localStorage หรือใช้ค่า default
       order_status: 'รอดำเนินการ',
-      order_name: product.name,
       sweetness: selectedOptions.sweetness,
       milk: selectedOptions.milk,
       size: selectedOptions.size,
@@ -98,16 +99,15 @@ const ProductDetail = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(order)
       });
-
       const data = await res.json();
       if (res.ok) {
-        setMessage(`✅ ${data.message}`);
+        setMessage(data.message); // ตั้งค่าข้อความเมื่อคำขอสำเร็จ
       } else {
-        setMessage(`❌ ${data.message}`);
+        setMessage('❌ Error placing order');
       }
     } catch (err) {
-      setMessage('❌ ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้');
       console.error(err);
+      setMessage('❌ Error placing order');
     }
   };
 
