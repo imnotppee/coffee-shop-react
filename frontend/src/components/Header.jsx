@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { BiSearch, BiUser, BiShoppingBag } from 'react-icons/bi';
 
 const Header = () => (
-  <header className="container-fluid bg-light" style={{ backgroundColor: '#D4BAB0' }}>
+  <header className="container-fluid" style={{ backgroundColor: '#D4BAB0' }}>
     <div className="row py-3 border-bottom align-items-center">
 
       {/* Logo */}
