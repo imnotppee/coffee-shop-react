@@ -10,7 +10,7 @@ const CoffeeAndTea = () => {
     { img: "images/4.jpg", title: "อเมริกาโน่เย็น", price: 50.00 },
     { img: "images/5.jpg", title: "คาปูชิโน่", price: 50.00 },
     { img: "images/6.jpg", title: "อเมริกาโน่ส้ม", price: 60.00 },
-    { img: "images/7.jpg", title: "นมสดบราวชูก้า", price: 60.00 },
+    { img: "images/7.jpg", title: "เอสเพรสโซ่บราวน์ชูการ์บราวชูก้า", price: 60.00 },
     { img: "images/88.jpg", title: "มัทฉะลาเต้", price: 60.00 },
   ];
 

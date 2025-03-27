@@ -1,16 +1,10 @@
-// src/pages/Cart.jsx
-import React from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 const Cart = () => {
-  const cartItems = [
-    {
-      id: 1,
-      name: "สมูทตี้สตรอว์เบอร์รี่",
-      image: "/images/strawberry-smoothie.jpg",
-      price: 60,
-      quantity: 2
-    }
-  ];
+  const { cartItems, updateItemQuantity } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -19,10 +13,12 @@ const Cart = () => {
       <h2 className="text-center mb-5" style={{ color: '#5e4132', fontWeight: 'bold' }}>MY CART</h2>
 
       <div className="row">
+        {/* ตารางสินค้า */}
         <div className="col-lg-8">
           <table className="table border-0 align-middle">
             <thead>
               <tr className="text-center text-muted">
+                <th>ชิ้นที่</th>
                 <th>สินค้า</th>
                 <th>ราคา</th>
                 <th>จำนวน</th>
@@ -30,18 +26,30 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody>
-              {cartItems.map(item => (
+              {cartItems.map((item, index) => (
                 <tr key={item.id} className="text-center">
-                  <td className="d-flex align-items-center gap-3">
-                    <img src={item.image} alt={item.name} width="80" className="rounded" />
-                    <span className="fw-semibold text-muted">{item.name}</span>
-                  </td>
+                  <td>{index + 1}</td>
+                  <td className="fw-semibold text-muted">{item.name}</td>
                   <td className="text-muted">฿{item.price.toFixed(2)}</td>
                   <td>
                     <div className="d-flex justify-content-center align-items-center">
-                      <button className="btn btn-sm px-2" style={btnQtyStyle}>-</button>
-                      <input type="text" value={item.quantity} className="form-control text-center mx-2" style={{ width: '40px' }} readOnly />
-                      <button className="btn btn-sm px-2" style={btnQtyStyle}>+</button>
+                      <button
+                        className="btn btn-sm px-2"
+                        style={btnQtyStyle}
+                        onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
+                      >-</button>
+                      <input
+                        type="text"
+                        value={item.quantity}
+                        className="form-control text-center mx-2"
+                        style={{ width: '40px' }}
+                        readOnly
+                      />
+                      <button
+                        className="btn btn-sm px-2"
+                        style={btnQtyStyle}
+                        onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
+                      >+</button>
                     </div>
                   </td>
                   <td className="text-muted">฿{(item.price * item.quantity).toFixed(2)}</td>
@@ -51,6 +59,7 @@ const Cart = () => {
           </table>
         </div>
 
+        {/* รวมยอด + ปุ่มชำระเงิน */}
         <div className="col-lg-4">
           <div className="p-4 rounded" style={{ backgroundColor: '#f3ece6' }}>
             <h5 className="mb-3 text-muted">CART TOTALS</h5>
@@ -62,8 +71,11 @@ const Cart = () => {
               <span className="fw-semibold text-muted">รวม</span>
               <span className="text-muted">฿{total.toFixed(2)}</span>
             </div>
-
-            <button className="btn mt-4 w-100 fw-semibold" style={checkoutBtnStyle}>
+            <button
+              className="btn mt-4 w-100 fw-semibold"
+              style={checkoutBtnStyle}
+              onClick={() => navigate('/payment')}
+            >
               ชำระเงิน
             </button>
           </div>

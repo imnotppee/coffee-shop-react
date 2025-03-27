@@ -10,11 +10,14 @@ import Register from './pages/RegisterForm';
 import ForgotPassword from './pages/ForgotPassword';
 import DashboardPage from './pages/DashboardPage';
 import Header from './components/Header';
-import HeaderSecond from './components/HeaderSecond';  // ✅ Import HeaderSecond
+import HeaderSecond from './components/HeaderSecond';
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
 import MenuManagement from './pages/MenuManagement';
 import Cart from './pages/Cart';
+import Payment from './pages/Payment';
+import HeaderThird from './components/HeaderThird';
+
 
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,20 +25,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const AppLayout = () => {
   const location = useLocation();
 
-  // ✅ กำหนดหน้าที่จะซ่อน Header & Footer
+
   const hideLayoutPages = [
     "/login", "/register", "/forgot-password", 
     "/dashboardpage", "/menumanagement", "/stock", 
-    "/customer", "/ordermanagement"
+    "/customer", "/ordermanagement", "/payment"
   ];
   
-  const isProductDetailPage = ["/productdetail", "/cart"].includes(location.pathname.toLowerCase());
+  const useOtherHeader = ["/productdetail", "/cart"].includes(location.pathname.toLowerCase());
+  const useThirdHeader = ["/payment"].includes(location.pathname.toLowerCase());
+
 
   return (
     <div className="d-flex flex-column min-vh-100 bg-white container-fluid px-0">
       {/* ✅ ใช้ HeaderSecond เฉพาะหน้า /productdetail */}
       {!hideLayoutPages.includes(location.pathname.toLowerCase()) &&
-        (isProductDetailPage ? <HeaderSecond /> : <Header />)}
+        (useOtherHeader ? <HeaderSecond /> : <Header />)}
+
 
       <main className="flex-fill">
         <Routes>
@@ -51,11 +57,12 @@ const AppLayout = () => {
           <Route path="/menumanagement" element={<MenuManagement />} />
           <Route path="/product-detail" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes>
       </main>
 
       {/* ✅ Footer จะแสดงทุกหน้าที่ยกเว้น hideLayoutPages และ /productdetail */}
-      {!hideLayoutPages.includes(location.pathname.toLowerCase()) && !isProductDetailPage && <Footer />}
+      {!hideLayoutPages.includes(location.pathname.toLowerCase()) && !useOtherHeader && <Footer />}
     </div>
   );
 };
