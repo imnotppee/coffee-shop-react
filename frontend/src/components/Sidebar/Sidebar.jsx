@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaTachometerAlt, FaCoffee, FaClipboardList, FaBoxOpen, FaUsers } from 'react-icons/fa';
-import logo from '../../assets/logo.png'; // เปลี่ยน path ตามที่คุณเก็บไฟล์
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.png';
 
 const Sidebar = () => {
   return (
@@ -22,21 +23,21 @@ const Sidebar = () => {
 
       {/* เมนูไอคอนแนวตั้ง */}
       <nav className="nav flex-column text-center w-100">
-        <a className="nav-link py-3 px-0 text-dark" href="#" title="Dashboard">
+        <Link to="/dashboardpage" className="nav-link py-3 px-0 text-dark" title="Dashboard">
           <FaTachometerAlt size={20} />
-        </a>
-        <a className="nav-link py-3 px-0 text-dark" href="#" title="Menu Management">
+        </Link>
+        <Link to="/menumanagement" className="nav-link py-3 px-0 text-dark" title="Menu Management">
           <FaCoffee size={20} />
-        </a>
-        <a className="nav-link py-3 px-0 text-dark" href="#" title="Order Management">
+        </Link>
+        <Link to="/ordermanagement" className="nav-link py-3 px-0 text-dark" title="Order Management">
           <FaClipboardList size={20} />
-        </a>
-        <a className="nav-link py-3 px-0 text-dark" href="#" title="Stock">
+        </Link>
+        <Link to="/stock" className="nav-link py-3 px-0 text-dark" title="Stock">
           <FaBoxOpen size={20} />
-        </a>
-        <a className="nav-link py-3 px-0 text-dark" href="#" title="Customer">
+        </Link>
+        <Link to="/customer" className="nav-link py-3 px-0 text-dark" title="Customer">
           <FaUsers size={20} />
-        </a>
+        </Link>
       </nav>
     </div>
   );
