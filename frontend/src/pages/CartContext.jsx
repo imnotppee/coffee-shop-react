@@ -24,7 +24,7 @@ export const CartProvider = ({ children }) => {
         item.id === id ? { ...item, quantity: Math.max(1, newQty) } : item
       )
     );
-  };
+  }
 
   return (
     <CartContext.Provider value={{ cartItems, addToCart, updateItemQuantity }}>
