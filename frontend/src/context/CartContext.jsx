@@ -6,21 +6,27 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   const addToCart = (item) => {
-    setCartItems((prev) => {
-      const existing = prev.find((p) => p.id === item.id);
+    setCartItems(prevItems => {
+      const existing = prevItems.find(p =>
+        p.id === item.id &&
+        JSON.stringify(p.options) === JSON.stringify(item.options)
+      );
+
       if (existing) {
-        return prev.map((p) =>
-          p.id === item.id ? { ...p, quantity: p.quantity + 1 } : p
+        return prevItems.map(p =>
+          p.id === item.id && JSON.stringify(p.options) === JSON.stringify(item.options)
+            ? { ...p, quantity: p.quantity + item.quantity }
+            : p
         );
       } else {
-        return [...prev, { ...item, quantity: 1 }];
+        return [...prevItems, { ...item }];
       }
     });
   };
 
   const updateItemQuantity = (id, newQty) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
+    setCartItems(prevItems =>
+      prevItems.map(item =>
         item.id === id ? { ...item, quantity: Math.max(1, newQty) } : item
       )
     );
