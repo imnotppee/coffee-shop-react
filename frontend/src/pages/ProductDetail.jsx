@@ -1,12 +1,8 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const { addToCart } = useContext(CartContext);
-
   const [product, setProduct] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState({
     size: 'S',
@@ -39,9 +35,9 @@ const ProductDetail = () => {
   useEffect(() => {
     const mockData = {
       id: 1,
-      name: "เอสเพรสโซ่บราวน์ชูการ์",
+      name: "เอสเพรสโว่บราวน์ชูการ์",
       description: "กลิ่นกาแฟหอมหวาน ชวนน่ากิน ดื่มอร่อยใจคิดถึงเธอ",
-      image_url: "/images/7.png",
+      image_url: "/images/7.jpg",
       base_price: 60.0,
       options: {
         sweetness: ["หวานน้อย", "หวานปกติ", "หวานมาก"],
@@ -65,18 +61,7 @@ const ProductDetail = () => {
 
   // คำนวณราคาใหม่เมื่อมีการเปลี่ยนแปลงตัวเลือก
   useEffect(() => {
-    if (product) {
-      let extra = 0;
-      if (product.options.topping) {
-        const topping = product.options.topping.find(t => t.label === selectedOptions.topping);
-        if (topping) extra += topping.extra;
-      }
-      if (product.options.size) {
-        const size = product.options.size.find(s => s.label === selectedOptions.size);
-        if (size) extra += size.extra;
-      }
-      setTotal((product.base_price + extra) * quantity);
-    }
+    setTotal(calcTotal());
   }, [selectedOptions, quantity, product]);
 
   // จัดการการเปลี่ยนแปลงตัวเลือก
@@ -89,16 +74,44 @@ const ProductDetail = () => {
     setQuantity(prev => Math.max(1, prev + delta));
   };
 
-  const handleAddToCart = () => {
-    const payload = {
-      productId: product.id,
-      options: selectedOptions,
-      quantity,
-      total
+  // ฟังก์ชันสำหรับการเพิ่มสินค้าในตะกร้า
+  const handleOrder = async () => {
+    const unitPrice = total / quantity; // คำนวณราคาเป็นต่อหน่วย
+    const userId = localStorage.getItem('user_id') || 1; // ดึง user_id จาก localStorage หรือใช้ 1 เป็นค่า default
+
+    const order = {
+      menu_name: product.name,  // ใช้ product.name แทน selectedMenu.name
+      quantity: quantity,
+      unit_price: unitPrice,
+      subtotal: total,
+      user_id: userId,  // ดึงจาก localStorage หรือใช้ค่า default
+      order_status: 'รอดำเนินการ',
+      sweetness: selectedOptions.sweetness,
+      milk: selectedOptions.milk,
+      size: selectedOptions.size,
+      topping: selectedOptions.topping,
+      temperature: selectedOptions.temperature
     };
-    console.log('Add to cart:', payload);
+
+    try {
+      const res = await fetch('http://localhost:4000/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(order)
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setMessage(data.message); // ตั้งค่าข้อความเมื่อคำขอสำเร็จ
+      } else {
+        setMessage('❌ Error placing order');
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage('❌ Error placing order');
+    }
   };
 
+  // หากยังไม่ได้โหลดข้อมูลสินค้า
   if (!product) return <div>Loading...</div>;
 
   return (
@@ -122,7 +135,7 @@ const ProductDetail = () => {
               {values.map((v, index) => (
                 <div className="form-check form-check-inline mt-2" key={index}>
                   <input
-                    className="form-check-input custom-radio"
+                    className="form-check-input"
                     type="radio"
                     name={type}
                     id={`${type}-${index}`}
@@ -130,63 +143,20 @@ const ProductDetail = () => {
                     checked={selectedOptions[type] === (typeof v === 'string' ? v : v.label)}
                     onChange={() => handleOptionChange(type, typeof v === 'string' ? v : v.label)}
                   />
-                  <label
-                    className="form-check-label"
-                    htmlFor={`${type}-${index}`}
-                    style={{ fontSize: '1rem', marginLeft: '6px' }}
-                  >
+                  <label className="form-check-label" htmlFor={`${type}-${index}`} style={{ fontSize: '1rem', marginLeft: '6px' }}>
                     {typeof v === 'string' ? v : `${v.label} ${v.extra > 0 ? `(+${v.extra}฿)` : ''}`}
                   </label>
                 </div>
               ))}
             </div>
           ))}
-
           {/* การเปลี่ยนแปลงจำนวนสินค้า */}
           <div className="mb-4">
             <strong style={{ fontSize: '1.2rem' }}>จำนวน:</strong>
             <div className="d-flex align-items-center gap-3 mt-2">
-              <button
-                className="btn"
-                style={{
-                  borderRadius: '50%',
-                  width: '40px',
-                  height: '40px',
-                  fontWeight: 'bold',
-                  fontSize: '1.3rem',
-                  backgroundColor: '#efebe9',
-                  border: '1px solid #a1887f',
-                  color: '#5d4037'
-                }}
-                onClick={() => handleQuantityChange(-1)}
-              >
-                -
-              </button>
-              <span style={{
-                fontSize: '1.6rem',
-                fontWeight: 'bold',
-                minWidth: '60px',
-                textAlign: 'center',
-                color: '#3e2723'
-              }}>
-                {quantity}
-              </span>
-              <button
-                className="btn"
-                style={{
-                  borderRadius: '50%',
-                  width: '40px',
-                  height: '40px',
-                  fontWeight: 'bold',
-                  fontSize: '1.3rem',
-                  backgroundColor: '#efebe9',
-                  border: '1px solid #a1887f',
-                  color: '#5d4037'
-                }}
-                onClick={() => handleQuantityChange(1)}
-              >
-                +
-              </button>
+              <button className="btn" onClick={() => handleQuantityChange(-1)}>-</button>
+              <span style={{ fontSize: '1.6rem', fontWeight: 'bold' }}>{quantity}</span>
+              <button className="btn" onClick={() => handleQuantityChange(1)}>+</button>
             </div>
           </div>
 
@@ -198,54 +168,17 @@ const ProductDetail = () => {
             </span>
           </div>
 
-          <button
-            className="btn"
-            style={{
-              backgroundColor: '#A99481',
-              color: 'white',
-              fontSize: '1.3rem',
-              padding: '12px 30px',
-              borderRadius: '8px',
-              fontWeight: 'bold',
-              border: 'none'
-            }}
-            onClick={handleAddToCart}
-          >
-            เพิ่มลงตะกร้า
-          </button>
+          {/* ปุ่มเพิ่มลงตะกร้า */}
+          <button className="btn btn-primary" onClick={handleOrder}>เพิ่มลงตะกร้า</button>
+
+          {/* แสดงข้อความการแจ้งเตือน */}
+          {message && (
+            <p className="mt-3 fw-bold text-danger">{message}</p>
+          )}
         </div>
       </div>
     </div>
   );
-};
-
-const btnStyle = {
-  borderRadius: '50%',
-  width: '40px',
-  height: '40px',
-  fontWeight: 'bold',
-  fontSize: '1.3rem',
-  backgroundColor: '#efebe9',
-  border: '1px solid #a1887f',
-  color: '#5d4037'
-};
-
-const qtyText = {
-  fontSize: '1.6rem',
-  fontWeight: 'bold',
-  minWidth: '60px',
-  textAlign: 'center',
-  color: '#3e2723'
-};
-
-const addToCartBtn = {
-  backgroundColor: '#A99481',
-  color: 'white',
-  fontSize: '1.3rem',
-  padding: '12px 30px',
-  borderRadius: '8px',
-  fontWeight: 'bold',
-  border: 'none'
 };
 
 export default ProductDetail;
