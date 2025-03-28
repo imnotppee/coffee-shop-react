@@ -28,7 +28,7 @@ const Header = () => (
           <input
             type="text"
             className="form-control border-0 bg-transparent"
-            placeholder="Search Products..."
+            placeholder="Search Menu..."
           />
           <BiSearch size={24} className="ms-2 text-secondary" />
         </div>
